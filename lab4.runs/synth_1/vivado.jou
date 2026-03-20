@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Fri Mar 20 14:15:22 2026
+# Process ID         : 34744
+# Current directory  : C:/Users/C28Reva.Kalbhor/ece281/lab4/lab4.runs/synth_1
+# Command line       : vivado.exe -log top_basys3.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_basys3.tcl
+# Log file           : C:/Users/C28Reva.Kalbhor/ece281/lab4/lab4.runs/synth_1/top_basys3.vds
+# Journal file       : C:/Users/C28Reva.Kalbhor/ece281/lab4/lab4.runs/synth_1\vivado.jou
+# Running On         : C28-2TK41601DB
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 22631
+# Processor Detail   : AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics  
+# CPU Frequency      : 3293 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 33585 MB
+# Swap memory        : 5100 MB
+# Total Virtual      : 38685 MB
+# Available Virtual  : 11032 MB
+#-----------------------------------------------------------
+source top_basys3.tcl -notrace
