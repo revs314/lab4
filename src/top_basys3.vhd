@@ -25,6 +25,14 @@ end top_basys3;
 architecture top_basys3_arch of top_basys3 is
 
     -- signal declarations
+    -- need a clock to slow down the program
+    signal w_slow_clk : std_logic;
+    
+    -- need floor signal; 4 bits = 4 floors
+    signal w_floor : std_logic_vector(3 downto 0); 
+    
+    -- need output of 7 segments for the display
+    signal w_seg : std_logic_vector(6 downto 0); 
     
   
 	-- component declarations
@@ -70,14 +78,65 @@ architecture top_basys3_arch of top_basys3 is
 	
 begin
 	-- PORT MAPS ----------------------------------------
-    	
+	-- created port maps for elevator and seven seg and clock
+	
+	elevator2_inst : elevator_controller_fsm 		--instantiation of elevator 2
+        port map (						  
+            i_clk   => w_slow_clk,
+			i_reset => btnU,
+			-- or button R??
+			is_stopped  => sw(14),
+			go_up_down     => sw(15),
+            o_floor => w_floor
+	    );
+
+	sevenseg_inst : sevenseg_decoder
+	   port map (
+	       -- the hex is the input of sevenseg that takes in the floors
+	       i_Hex => w_floor,
+	       -- the seg is the output of sevenseg that outputs seg
+	       o_seg_n => w_seg
+	    );
+	
+    -- put clock in to slow down
+        clkdiv_inst : clock_divider 		--instantiation of clock_divider to take 
+        generic map ( k_DIV => 50000000 ) -- 1 Hz clock from 100 MHz
+        port map (						  
+            i_clk   => clk,
+            i_reset => btnU,
+            -- or button L??
+            -- pressing U restarts the slow clock
+            o_clk   => w_slow_clk
+            
+        );  
+        
+        -- 3 anodes
+            -- an(3:0)
+            -- an3 is leftmost
+            -- an0 is rightmost
+            -- to get an0: 1110??
+        -- an0 is the elevator 2 or right elevator??
+        an <= "1110";
 	
 	-- CONCURRENT STATEMENTS ----------------------------
 	
-	-- LED 15 gets the FSM slow clock signal. The rest are grounded.
+	-- LED 15 gets the FSM slow clock signal
+	led(15) <= w_slow_clk;
+	
+	-- The rest are grounded
+	led(14 downto 0) <= (others => '0');
 	
 	-- leave unused switches UNCONNECTED. Ignore any warnings this causes.
 	
 	-- reset signals
 	
 end top_basys3_arch;
+
+
+
+
+
+
+
+
+
